@@ -1,15 +1,37 @@
+<script setup>
+import { ref } from 'vue'
+
+const tab = ref(null)
+
+const items = {
+  'Home': '/',
+  'Cats': '/cats',
+  'Kittens': '/kittens',
+  'Nuustik': '/kittens/nuustik',
+  'any cat name': '/kittens/anycatnamehere',
+}
+</script>
+
 <template>
-  <div>
-    <nav>
-      <ul>
-        <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/cats">cats</NuxtLink></li>
-        <li><NuxtLink to="/kittens">kittens</NuxtLink></li>
-        <li><NuxtLink to="/kittens/sorri">Sorri</NuxtLink></li>
-        <li><NuxtLink to="/kittens/anycatnamehere">any cat name</NuxtLink></li>
-      </ul>
-    </nav>
+  <v-app>
+
+    <v-toolbar color="primary">
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Your Dashboard</v-toolbar-title>
+
+      <v-btn icon="mdi-magnify"></v-btn>
+
+      <v-btn icon="mdi-dots-vertical"></v-btn>
+
+      <template v-slot:extension>
+        <v-tabs v-model="tab" align-tabs="title">
+          <v-tab v-for="(url, name) in items" :key="name" :text="name" :value="name" :to="url"></v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+
     <NuxtRouteAnnouncer />
     <NuxtPage />
-  </div>
+  </v-app>
 </template>
