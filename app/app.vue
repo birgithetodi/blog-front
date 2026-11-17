@@ -1,15 +1,39 @@
+
 <template>
   <div>
     <nav>
-      <ul>
-        <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/cats">cats</NuxtLink></li>
-        <li><NuxtLink to="/kittens">kittens</NuxtLink></li>
-        <li><NuxtLink to="/kittens/sorri">Sorri</NuxtLink></li>
-        <li><NuxtLink to="/kittens/anycatnamehere">any cat name</NuxtLink></li>
-      </ul>
+      <Menubar :model="items" />
     </nav>
-    <NuxtRouteAnnouncer />
-    <NuxtPage />
+
+    <main class="p-4">
+      <NuxtRouteAnnouncer />
+      <NuxtPage />
+    </main>
   </div>
 </template>
+
+<script setup>
+const items = [
+  {
+    label: 'Avaleht',
+    url: '/'
+  },
+  {
+    label: 'Cats',
+    url: '/cats'
+  },
+  {
+    label: 'Kittens',
+    url: '/kittens'
+  },
+  {
+    label: 'Sorri',
+    url: '/kittens/sorri'
+  },
+  {
+    label: 'Garfield',
+    url: '/kittens/anycatnamehere'
+  }
+]
+</script>
+
