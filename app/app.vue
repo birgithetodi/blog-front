@@ -1,15 +1,48 @@
+<script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui';
+
+const route = useRoute();
+
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Docs',
+    to: '/docs/getting-started',
+    active: route.path.startsWith('/docs/getting-started'),
+  },
+  {
+    label: 'Components',
+    to: '/docs/components',
+    active: route.path.startsWith('/docs/components')
+  },
+  {
+    label: 'Figma',
+    to: 'https://go.nuxt.com/figma-ui',
+    target: '_blank'
+  },
+  {
+    label: 'Releases',
+    to: 'https://github.com/nuxt/ui/releases',
+    target: '_blank'
+  },
+]);
+</script>
 <template>
-  <div>
-    <nav>
-      <ul>
-        <li><NuxtLink to="/">home</NuxtLink></li>
-        <li><NuxtLink to="/cats">cats</NuxtLink></li>
-        <li><NuxtLink to="/kittens">kittens</NuxtLink></li>
-        <li><NuxtLink to="/kittens/sorri">Sorri</NuxtLink></li>
-        <li><NuxtLink to="/kittens/anycatnamehere">any cat name</NuxtLink></li>
-      </ul>
-    </nav>
+  <UApp>
+    <UHeader title="Blog">
+      <UNavigationMenu :items="items" />
+
+      <template #right>
+        <UColorModeButton />
+
+        <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
+          <UButton color="neutral" variant="ghost" to="https://github.com/nuxt/ui" target="_blank"
+            icon="i-simple-icons-github" aria-label="GitHub" />
+        </UTooltip>
+      </template>
+    </UHeader>
     <NuxtRouteAnnouncer />
-    <NuxtPage />
-  </div>
+    <UContainer>
+      <NuxtPage />
+    </UContainer>
+  </UApp>
 </template>
