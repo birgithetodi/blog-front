@@ -2,6 +2,8 @@
 <script setup lang="ts">
 import { faker } from '@faker-js/faker'
 
+let data = $fetch('http://localhost:8000/')
+
 const posts = ref([
   {
     title: 'Nuxt Icon v1',
@@ -31,6 +33,7 @@ for (let i = 0; i < 20; i++) {
     date: faker.date.past().toISOString().split('T')[0]
   })
 }
+
 </script>
 
 <template>
