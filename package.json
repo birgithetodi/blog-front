@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@fakerjs/faker": "^3.0.0",
     "@nuxt/ui": "^4.13.0",
     "nuxt": "^4.6.4",
     "tailwindcss": "^4.3.5",

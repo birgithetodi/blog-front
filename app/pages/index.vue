@@ -1,8 +1,8 @@
-<script setup lang="ts">
-import type { BlogPostProps } from '@nuxt/ui'
-import { faker } from '@faker-js/faker';
 
-const posts = ref<BlogPostProps[]>([
+<script setup lang="ts">
+import { faker } from '@faker-js/faker'
+
+const posts = ref([
   {
     title: 'Nuxt Icon v1',
     description: 'Discover Nuxt Icon v1!',
@@ -20,31 +20,27 @@ const posts = ref<BlogPostProps[]>([
     description: 'Nuxt 3.13 is out!',
     image: 'https://nuxt.com/assets/blog/v3.13.png',
     date: '2024-08-22'
-  },
-]);
-for(let i=0; i<20; i++){
-    posts.value.push({
-        title: faker.lorem.sentence(5),
-        description: faker.lorem.paragraph(),
-        image: faker.image.url({width:1280,height:720}),
-        date: faker.date.past(),
-    });
-}
-</script>
-<script setup>
-const vajutatud = () => {
-  alert('Nupp töötab!')
+  }
+])
+
+for (let i = 0; i < 20; i++) {
+  posts.value.push({
+    title: faker.lorem.sentence(5),
+    description: faker.lorem.paragraph(),
+    image: faker.image.url(),
+    date: faker.date.past().toISOString().split('T')[0]
+  })
 }
 </script>
 
 <template>
   <div>
     <UBlogPosts class="lg:grid-cols-4">
-    <UBlogPost
-      v-for="(post, index) in posts"
-      :key="index"
-      v-bind="post"
-    />
-  </UBlogPosts>
+      <UBlogPost
+        v-for="(post, index) in posts"
+        :key="index"
+        v-bind="post"
+      />
+    </UBlogPosts>
   </div>
 </template>
